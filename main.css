@@ -33,7 +33,7 @@ body {
 header,
 section {
 	position: fixed;
-	width: 300px;
+	width: 320px;
 	margin-left: 0;
 	background-color: #fff;
 }
