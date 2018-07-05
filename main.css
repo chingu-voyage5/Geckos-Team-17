@@ -5,6 +5,16 @@
 	font-weight: 600;
 }
 
+body {
+	background-image: var(--bg-pic, url(PIA17005.jpg));
+	background-size: cover;
+}
+
+.imageButtons{
+	float: right;
+	margin-top: -50%;
+}
+
 h4 {
 	@include font-base;
 	font-size: 0.7rem;
