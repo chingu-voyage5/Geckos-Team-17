@@ -66,12 +66,9 @@ $(document).ready(function () {
 
 	//APOD background request
 	var bgImage;
-	var apodApiUrl = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+	var apodApiUrl = 'https://api.nasa.gov/planetary/apod?api_key=RNhAKSYZxOLaXJY8GfbB935sn3XgBWtqa2vPVEuu';
 	$.ajax({
-		type:"GET",
 		url: apodApiUrl,
-		async: false,
-		dataType: 'json',
 		success: function(data){
 			bgImage = data.url;
 		}
