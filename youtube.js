@@ -65,32 +65,31 @@ $(document).ready(function () {
 
 
 	//APOD background request
-	var bgImage;
 	var apodApiUrl = 'https://api.nasa.gov/planetary/apod?api_key=RNhAKSYZxOLaXJY8GfbB935sn3XgBWtqa2vPVEuu';
+
 	$.ajax({
 		url: apodApiUrl,
 		success: function(data){
-			bgImage = data.url;
+			//background image change
+			const root = document.documentElement;
+			const imageBtns = document.querySelectorAll('button');
+		
+			imageBtns.forEach((btn) => {
+				btn.addEventListener('click', handleImgUpdate);
+			});
+		
+			function handleImgUpdate(e){
+					switch(e.target.value) {
+					case 'default':
+					root.style.setProperty('--bg-pic', 'url(PIA17005.jpg)');
+					break;
+					case 'apod':
+					root.style.setProperty('--bg-pic', 'url('+data.url+')');
+					break;
+				}
+			}
+	
 		}
 	});
-	
-	//background image change
-	const root = document.documentElement;
-	const imageBtns = document.querySelectorAll('button');
-	
-	imageBtns.forEach((btn) => {
-		btn.addEventListener('click', handleImgUpdate);
-	});
-	
-	function handleImgUpdate(e){
-		switch(e.target.value) {
-			case 'default':
-			root.style.setProperty('--bg-pic', 'url(PIA17005.jpg)');
-			break;
-			case 'apod':
-			root.style.setProperty('--bg-pic', 'url(bgImage)');
-			break;
-		}
-	}
 	
 });
