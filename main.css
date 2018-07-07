@@ -12,7 +12,7 @@ body {
 
 .imageButtons{
 	float: right;
-	margin-top: -50%;
+	margin-top: 0px;
 }
 
 h4 {
@@ -22,7 +22,7 @@ h4 {
 
 p {
 	@include font-base;
-	color: grey;
+	color: black;
 	font-size: 0.7rem;
 }
 
@@ -30,45 +30,47 @@ body {
 	background-color: #eee;
 }
 
-.container {
+.container{
+	height: 100vh;
 	width: 350px;
-	background-color: #fff;
-	margin-top: 50%;
 	margin-left: 0px;
-	height: 650px;
+}
+
+.col {
+	background-color: rgba(255, 255, 255, 0.5);
+	height: 50vh;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
 
-header,
-section {
-	position: fixed;
+header {
 	width: 320px;
 	margin-left: 0;
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
-section {
-	top: 37%;
-}
 
 .logo {
 	width: 120px;
 	padding: 10px;
+	position: fixed;
+}
+
+section{
+	padding-top: 40px;
+	position: fixed;
 }
 
 main {
 	width: 350px;
-	padding: 200px 18px 10px;
+	margin-top: 200px;
 }
 
 article {
 	display: flex;
 	align-items: center;
 	padding: 8px 12px;
-	border: 2px solid white;
 	border-radius: 8px;
-	margin: 0;
 	&:hover {
 		border: 2px solid #ff9999;
 	}
@@ -81,4 +83,14 @@ article {
 
 .details {
 	padding: 8px 22px;
+}
+
+.jumbotron{
+	display: none;
+	width: 50%;
+	text-align: center;
+	margin-left: 450px;
+	margin-top: -30vh;
+	background-color: rgba(200,200,200, 0.25);
+    border-radius: 50%;
 }

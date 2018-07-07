@@ -3,7 +3,7 @@
 // https://i.ytimg.com/vi/qxWrnhZEuRU/mqdefault.jpg
 
 $(document).ready(function () {
-
+	//Youtube playlist widget
     var key = 'AIzaSyDkxYa_J6nm-HJH2pyMhEpMtj1hC2TbjQ8';
     var playlistId = 'PLqs5ohhass_QhOSkrNqPFEAOv5fBzTvWv';
     var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
@@ -78,13 +78,18 @@ $(document).ready(function () {
 				btn.addEventListener('click', handleImgUpdate);
 			});
 		
+			$(".apodInfo").text(data.explanation);
+			$(".source").text(data.url);
+			
 			function handleImgUpdate(e){
 					switch(e.target.value) {
 					case 'default':
 					root.style.setProperty('--bg-pic', 'url(PIA17005.jpg)');
+					$(".jumbotron").css("display", "none");
 					break;
 					case 'apod':
 					root.style.setProperty('--bg-pic', 'url('+data.url+')');
+					$(".jumbotron").css("display", "block");
 					break;
 				}
 			}
