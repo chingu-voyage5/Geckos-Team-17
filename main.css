@@ -56,6 +56,10 @@ header {
 	position: fixed;
 }
 
+.listName {
+	padding-left: 115px;
+}
+
 section{
 	padding-top: 40px;
 	position: fixed;

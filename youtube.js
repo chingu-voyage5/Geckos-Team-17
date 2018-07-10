@@ -12,7 +12,7 @@ $(document).ready(function () {
     var options = {
         part: 'snippet',
         key: key,
-        maxResults: 20,
+        maxResults: 50,
         playlistId: playlistId
     }
 
@@ -108,17 +108,16 @@ $(document).ready(function () {
 		for (var i = 0; i < data1.items.length; i++){
 			var artTitle = data1.items[i].title,
 				url = data1.items[i].link,
-				description = data1.items[i].description.substring(0, 200);
-				
-			            $('.feed').append(`
-							<article class="items">
-								<div class="artDetails">
-									<h4><a href = ${url}>${artTitle}</a></h4>
-									<p>${description}</p>
-									<hr>
-								</div>
-							</article>
-						`);
+				description = data1.items[i].description.substring(0, 250);
+		            $('.feed').append(`
+						<article class="items">
+							<div class="artDetails">
+								<h4><a href = ${url}>${artTitle}</a></h4>
+								<p>${description}...</p>
+								<hr>
+							</div>
+						</article>
+					`);
 		}
 	});
 });
