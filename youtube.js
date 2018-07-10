@@ -97,4 +97,28 @@ $(document).ready(function () {
 		}
 	});
 	
+	//Bad Astronomy blog RSS reader
+	var api = "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.syfy.com%2Ftags%2Fbad-astronomy%2Ffeed";
+
+	$.getJSON(api, function(data){
+		var feedName = data.feed.title,
+			feedURL = data.feed.link;
+		$(".title").append(`<h3><a href = ${feedURL}>${feedName}</a></h3>`);
+		
+		for (var i = 0; i < data.items.length; i++){
+			var artTitle = data.items[i].title,
+				url = data.items[i].link,
+				description = data.items[i].description.substring(0, 200);
+				
+			            $('.feed').append(`
+							<article class="items">
+								<div class="artDetails">
+									<h4><a href = ${url}>${artTitle}</a></h4>
+									<p>${description}</p>
+									<hr>
+								</div>
+							</article>
+						`);
+		}
+	});
 });

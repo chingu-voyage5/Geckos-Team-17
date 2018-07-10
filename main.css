@@ -89,8 +89,8 @@ article {
 	display: none;
 	width: 50%;
 	text-align: center;
-	margin-left: 450px;
-	margin-top: -30vh;
+	margin-left: 400px;
+	margin-top: -40vh;
 	background-color: rgba(200,200,200, 0.25);
-    border-radius: 50%;
+    border-radius: 25%;
 }
