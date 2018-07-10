@@ -69,7 +69,7 @@ $(document).ready(function () {
 
 	$.ajax({
 		url: apodApiUrl,
-		success: function(data){
+		success: function(data0){
 			//background image change
 			const root = document.documentElement;
 			const imageBtns = document.querySelectorAll('button');
@@ -78,8 +78,8 @@ $(document).ready(function () {
 				btn.addEventListener('click', handleImgUpdate);
 			});
 		
-			$(".apodInfo").text(data.explanation);
-			$(".source").text(data.url);
+			$(".apodInfo").text(data0.explanation);
+			$(".source").text(data0.url);
 			
 			function handleImgUpdate(e){
 					switch(e.target.value) {
@@ -88,7 +88,7 @@ $(document).ready(function () {
 					$(".jumbotron").css("display", "none");
 					break;
 					case 'apod':
-					root.style.setProperty('--bg-pic', 'url('+data.url+')');
+					root.style.setProperty('--bg-pic', 'url('+data0.url+')');
 					$(".jumbotron").css("display", "block");
 					break;
 				}
@@ -100,15 +100,15 @@ $(document).ready(function () {
 	//Bad Astronomy blog RSS reader
 	var api = "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.syfy.com%2Ftags%2Fbad-astronomy%2Ffeed";
 
-	$.getJSON(api, function(data){
-		var feedName = data.feed.title,
-			feedURL = data.feed.link;
+	$.getJSON(api, function(data1){
+		var feedName = data1.feed.title,
+			feedURL = data1.feed.link;
 		$(".title").append(`<h3><a href = ${feedURL}>${feedName}</a></h3>`);
 		
-		for (var i = 0; i < data.items.length; i++){
-			var artTitle = data.items[i].title,
-				url = data.items[i].link,
-				description = data.items[i].description.substring(0, 200);
+		for (var i = 0; i < data1.items.length; i++){
+			var artTitle = data1.items[i].title,
+				url = data1.items[i].link,
+				description = data1.items[i].description.substring(0, 200);
 				
 			            $('.feed').append(`
 							<article class="items">
