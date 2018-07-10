@@ -3,16 +3,16 @@
 // https://i.ytimg.com/vi/qxWrnhZEuRU/mqdefault.jpg
 
 $(document).ready(function () {
-
+	//Youtube playlist widget
     var key = 'AIzaSyDkxYa_J6nm-HJH2pyMhEpMtj1hC2TbjQ8';
-    var playlistId = 'PLqs5ohhass_QhOSkrNqPFEAOv5fBzTvWv';
+    var playlistId = 'PLsPUh22kYmNDRYfImV3BzNZ6yTwhIpe0k';
     var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
 
     var options = {
         part: 'snippet',
         key: key,
-        maxResults: 20,
+        maxResults: 50,
         playlistId: playlistId
     }
 
@@ -65,32 +65,59 @@ $(document).ready(function () {
 
 
 	//APOD background request
-	var bgImage;
 	var apodApiUrl = 'https://api.nasa.gov/planetary/apod?api_key=RNhAKSYZxOLaXJY8GfbB935sn3XgBWtqa2vPVEuu';
+
 	$.ajax({
 		url: apodApiUrl,
-		success: function(data){
-			bgImage = data.url;
+		success: function(data0){
+			//background image change
+			const root = document.documentElement;
+			const imageBtns = document.querySelectorAll('button');
+		
+			imageBtns.forEach((btn) => {
+				btn.addEventListener('click', handleImgUpdate);
+			});
+		
+			$(".apodInfo").text(data0.explanation);
+			$(".source").text(data0.url);
+			
+			function handleImgUpdate(e){
+					switch(e.target.value) {
+					case 'default':
+					root.style.setProperty('--bg-pic', 'url(PIA17005.jpg)');
+					$(".jumbotron").css("display", "none");
+					break;
+					case 'apod':
+					root.style.setProperty('--bg-pic', 'url('+data0.url+')');
+					$(".jumbotron").css("display", "block");
+					break;
+				}
+			}
+	
 		}
 	});
 	
-	//background image change
-	const root = document.documentElement;
-	const imageBtns = document.querySelectorAll('button');
-	
-	imageBtns.forEach((btn) => {
-		btn.addEventListener('click', handleImgUpdate);
-	});
-	
-	function handleImgUpdate(e){
-		switch(e.target.value) {
-			case 'default':
-			root.style.setProperty('--bg-pic', 'url(PIA17005.jpg)');
-			break;
-			case 'apod':
-			root.style.setProperty('--bg-pic', 'url(bgImage)');
-			break;
+	//Bad Astronomy blog RSS reader
+	var api = "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.syfy.com%2Ftags%2Fbad-astronomy%2Ffeed";
+
+	$.getJSON(api, function(data1){
+		var feedName = data1.feed.title,
+			feedURL = data1.feed.link;
+		$(".title").append(`<h3><a href = ${feedURL}>${feedName}</a></h3>`);
+		
+		for (var i = 0; i < data1.items.length; i++){
+			var artTitle = data1.items[i].title,
+				url = data1.items[i].link,
+				description = data1.items[i].description.substring(0, 250);
+		            $('.feed').append(`
+						<article class="items">
+							<div class="artDetails">
+								<h4><a href = ${url}>${artTitle}</a></h4>
+								<p>${description}...</p>
+								<hr>
+							</div>
+						</article>
+					`);
 		}
-	}
-	
+	});
 });
