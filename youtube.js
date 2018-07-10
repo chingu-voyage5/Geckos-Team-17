@@ -5,7 +5,7 @@
 $(document).ready(function () {
 	//Youtube playlist widget
     var key = 'AIzaSyDkxYa_J6nm-HJH2pyMhEpMtj1hC2TbjQ8';
-    var playlistId = 'PLqs5ohhass_QhOSkrNqPFEAOv5fBzTvWv';
+    var playlistId = 'PLsPUh22kYmNDRYfImV3BzNZ6yTwhIpe0k';
     var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
 
