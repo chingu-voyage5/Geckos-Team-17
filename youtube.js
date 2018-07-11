@@ -1,9 +1,5 @@
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/qxWrnhZEuRU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-// https://i.ytimg.com/vi/qxWrnhZEuRU/mqdefault.jpg
-
 $(document).ready(function () {
-	//Youtube playlist widget
+	//Youtube playlist
     var key = 'AIzaSyDkxYa_J6nm-HJH2pyMhEpMtj1hC2TbjQ8';
     var playlistId = 'PLsPUh22kYmNDRYfImV3BzNZ6yTwhIpe0k';
     var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
@@ -34,15 +30,11 @@ $(document).ready(function () {
 
 		
     function resultsLoop(data) {
-
         $.each(data.items, function (i, item) {
-
             var thumb = item.snippet.thumbnails.medium.url;
             var title = item.snippet.title;
             var desc = item.snippet.description.substring(0, 100);
             var vid = item.snippet.resourceId.videoId;
-
-
             $('main').append(`
 							<article class="item" data-key="${vid}">
 
@@ -57,7 +49,6 @@ $(document).ready(function () {
         });
     }
 
-		// CLICK EVENT
     $('main').on('click', 'article', function () {
         var id = $(this).attr('data-key');
         mainVid(id);
@@ -79,16 +70,23 @@ $(document).ready(function () {
 			});
 		
 			$(".apodInfo").text(data0.explanation);
-			$(".source").text(data0.url);
+			$(".source").append(`<a href = ${data0.url}>${data0.url}`);
 			
+
 			function handleImgUpdate(e){
+				var bgImage;			
+				if (data0.media_type === "video"){
+					bgImage = "watch.jpg";
+				} else {
+					bgImage = data0.url;
+				}
 					switch(e.target.value) {
 					case 'default':
 					root.style.setProperty('--bg-pic', 'url(PIA17005.jpg)');
 					$(".jumbotron").css("display", "none");
 					break;
 					case 'apod':
-					root.style.setProperty('--bg-pic', 'url('+data0.url+')');
+					root.style.setProperty('--bg-pic', 'url('+bgImage+')');
 					$(".jumbotron").css("display", "block");
 					break;
 				}
@@ -103,7 +101,7 @@ $(document).ready(function () {
 	$.getJSON(api, function(data1){
 		var feedName = data1.feed.title,
 			feedURL = data1.feed.link;
-		$(".title").append(`<h3><a href = ${feedURL}>${feedName}</a></h3>`);
+		$(".title").append(`<h3 class = "title"><a href = ${feedURL}>${feedName}</a></h3>`);
 		
 		for (var i = 0; i < data1.items.length; i++){
 			var artTitle = data1.items[i].title,
