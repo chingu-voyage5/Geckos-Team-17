@@ -4,7 +4,6 @@ $(document).ready(function () {
     var playlistId = 'PLsPUh22kYmNDRYfImV3BzNZ6yTwhIpe0k';
     var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
-
     var options = {
         part: 'snippet',
         key: key,
@@ -24,10 +23,9 @@ $(document).ready(function () {
 
     function mainVid(id) {
         $('#video').html(`
-					<iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-				`);
+			<iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		`);
     }
-
 		
     function resultsLoop(data) {
         $.each(data.items, function (i, item) {
@@ -36,16 +34,14 @@ $(document).ready(function () {
             var desc = item.snippet.description.substring(0, 100);
             var vid = item.snippet.resourceId.videoId;
             $('main').append(`
-							<article class="item" data-key="${vid}">
-
-								<img src="${thumb}" alt="" class="thumb">
-								<div class="details">
-									<h4>${title}</h4>
-									<p>${desc}</p>
-								</div>
-
-							</article>
-						`);
+				<article class="item" data-key="${vid}">
+					<img src="${thumb}" alt="" class="thumb">
+						<div class="details">
+							<h4>${title}</h4>
+								<p>${desc}</p>
+						</div>
+				</article>
+			`);
         });
     }
 
@@ -71,7 +67,6 @@ $(document).ready(function () {
 		
 			$(".apodInfo").text(data0.explanation);
 			$(".source").append(`<a href = ${data0.url}>${data0.url}`);
-			
 
 			function handleImgUpdate(e){
 				var bgImage;			
@@ -91,7 +86,6 @@ $(document).ready(function () {
 					break;
 				}
 			}
-	
 		}
 	});
 	
@@ -104,18 +98,18 @@ $(document).ready(function () {
 		$(".title").append(`<h3 class = "title"><a href = ${feedURL}>${feedName}</a></h3>`);
 		
 		for (var i = 0; i < data1.items.length; i++){
-			var artTitle = data1.items[i].title,
-				url = data1.items[i].link,
-				description = data1.items[i].description.substring(0, 250);
-		            $('.feed').append(`
-						<article class="items">
-							<div class="artDetails">
-								<h4><a href = ${url}>${artTitle}</a></h4>
-								<p>${description}...</p>
-								<hr>
-							</div>
-						</article>
-					`);
+		var artTitle = data1.items[i].title,
+			url = data1.items[i].link,
+			description = data1.items[i].description.substring(0, 250);
+           $('.feed').append(`
+				<article class="items">
+					<div class="artDetails">
+						<h4><a href = ${url}>${artTitle}</a></h4>
+						<p>${description}...</p>
+						<hr>
+					</div>
+				</article>
+			`);
 		}
 	});
 });
