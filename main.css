@@ -4,6 +4,9 @@ body {
 	background-size: cover;
 	background-color: #eee;
 }
+a {
+	color: #ff6;
+}
 
 .imageButtons{
 	float: right;
