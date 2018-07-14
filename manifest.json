@@ -1,10 +1,10 @@
 {
 	"manifest_version": 2,
 	"name": "Learn Something",
+	"description": "This project is a new tab extension that brings together the Syfy Bad Astronomy feed by Phil Plait and PBS SpaceTime youtube channel by Matt O'Dowd into a single place with the option to view the APOD as the background. A default image is provided as a background for ease of use.",
 	"version": "1.0",
 	"chrome_url_overrides" : {
 		"newtab": "newtab.html"
 	},
-	"content_security_policy": "script-src 'self' https://rss2json.com/gfapi.js: object-src 'self'",
 	"permissions": ["activeTab"]
 }

@@ -19,15 +19,18 @@ a {
 	margin: 10px;
 }
 
+h3 {
+	font-size: 1.5rem;
+}
+
 h4 {
-	font-size: 0.7rem;
+	font-size: 1.1rem;
 }
 
 p {
 	color: black;
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 }
-
 
 .container{
 	height: 100vh;
@@ -43,8 +46,7 @@ p {
 	border-bottom: 1px solid #666;
 }
 
-.title,
-header {
+.title {
 	width: 320px;
 	margin-left: 0;
 	position: fixed;
@@ -58,11 +60,13 @@ header {
 	width: 120px;
 	padding: 10px;
 	position: fixed;
+	
 }
 
 .listName {
 	padding-left: 115px;
 	padding-top: 3px;
+	position: fixed;
 }
 
 section{
